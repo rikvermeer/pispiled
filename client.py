@@ -22,7 +22,7 @@ while True:
     bytes = gamma[bytes]
     bytes = bytes.flatten('F')
     
-    bts = bytearray(3 * 32 + 1)
+    bts = bytearray(len(bytes) + 1)
     for i in range(32):
         i *= 3
         bts[i] = bytes[i]
