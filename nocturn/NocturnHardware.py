@@ -119,7 +119,6 @@ if __name__ == "__main__":
     try:
         while True:
             value = nh.processedRead()
-            if value != None:
-                print nh.processedRead()
+            print value
     except KeyboardInterrupt as e:
         sys.exit(e)
