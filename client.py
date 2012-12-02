@@ -17,18 +17,21 @@ gamma = array([0x80 | int( (i / 255.0) ** 2.5 * 127 + .5 ) for i in range(256)])
 
 while True:
     data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-    js =  json.loads(data)
-    bytes = clip(array([js["R"], js["G"], js["B"]]), 0, 255)
+    #print data
+    #js =  fromiter(json.loads(data), byte)
+    js = json.loads(data)
+    bytes = clip(array([js[0], js[1], js[2]]), 0, 255)
+    #print bytes
     bytes = gamma[bytes]
     bytes = bytes.flatten('F')
     
     bts = bytearray(len(bytes) + 1)
-    for i in range(32):
-        i *= 3
+    #print len(bytes)
+    #print bytes
+    for i in range(len(bytes)):
+	print i, bytes[i]
         bts[i] = bytes[i]
-        bts[i+1] = bytes[i+1]
-        bts[i+2] = bytes[i+2]
-    bts[96] = 0
-    
-    spidev.write(data)
+    bts[len(bytes)] = 0
+    #print bts
+    spidev.write(bts)
     spidev.flush()
