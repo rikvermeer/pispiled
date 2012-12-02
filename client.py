@@ -18,7 +18,7 @@ gamma = array([0x80 | int( (i / 255.0) ** 2.5 * 127 + .5 ) for i in range(256)])
 while True:
     data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
     js =  json.loads(data)
-    bytes = clip(array([js["R"], js["G"], js["B"]]), 0, 255)
+    bytes = clip(array([js[0][0], js[0][1], js[0][2]]), 0, 255)
     bytes = gamma[bytes]
     bytes = bytes.flatten('F')
     
