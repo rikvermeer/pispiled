@@ -1,3 +1,16 @@
+/*
+@author Rik Vermeer
+@repo http://github.com/rikvermeer/pispiled/modules/lpd8806
+
+@license I believe GPL2
+
+c python extension module that writes bytes to the lpd8806 chip on the raspberry-pi
+
+set(bits_per_word, speed_hz, delay)
+write(([0, 128, 255]))
+
+*/
+
 #include <Python.h>
 #include <stdio.h>
 #include <linux/types.h>
